@@ -6,3 +6,8 @@ frontend -- index.html - will include the html codes.
          -- script.js - will include the functionalities of the site.
 
 
+--- TO COMMIT AND PULL REQUESTS TO GITHUB ---
+git add . (stage the changes)
+git commit -m "Your commit message" (commit the changes with a message)
+git push origin To-do-list-Application (push your changes to github)
+
