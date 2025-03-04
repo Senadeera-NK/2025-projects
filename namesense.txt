@@ -1,0 +1,34 @@
+------------- GIT HUB -------------------
+1. git add .
+2. git commit -m "message"
+3. git push origin namesense
+
+-------------MAIN skeleton  ----------------
+ ----Tech Stack----
+Frontend: React (for a clean UI)
+Backend: Flask (lightweight & fast) or FastAPI (modern & async-friendly)
+Storage: Google Drive API (for uploading & downloading)
+OCR & Classification: Tesseract (images) + pdfplumber (PDFs)
+Database (Optional): PostgreSQL/MySQL for logging processed files
+🔹 Core Features
+1️⃣ User uploads multiple files (PNG, JPG, PDF)
+2️⃣ OCR extracts text and classifies the document
+3️⃣ Files get renamed & stored
+4️⃣ User connects Google Drive to store/retrieve files
+5️⃣ Download renamed files from the system
+
+🔹--- Development Steps---
+✅ Step 1: Set Up the Backend (Flask + Google Drive API)
+Handle file uploads
+Process files (OCR + classification)
+Integrate Google Drive for storage
+Provide an API for the frontend
+✅ Step 2: Build the Frontend (React)
+Upload form (drag & drop support)
+Display uploaded files & renamed results
+Google Drive authentication
+Download renamed files
+✅ Step 3: Deploy (Cloud-based)
+Host the backend on AWS/GCP/Render
+Deploy the frontend with Vercel/Netlify
+Store API keys securely (Google Drive OAuth)
