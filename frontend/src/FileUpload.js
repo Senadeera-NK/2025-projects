@@ -27,18 +27,28 @@ function FileUpload(){
         }
     };
 
+    const handleRename = async() = {
+        try{
+
+        }catch(){
+            
+        }
+    };
+
     return(
         <div className="file-upload-container">
             <h2>Upload Files</h2>
             <input type="File" multiple onChange={handleFileChange}/>
             <button onClick={handleUpload}>Upload</button>
 
-            <h3>Processing Files</h3>
-            <ul>
-                {uploadedFiles.map((file, index)=>(
-                    <li key={index}>{file}</li>
+            <h3>Uploaded Files</h3>
+            //list all the files that are selected by the user
+             <ul>
+                {Array.from(files).map((file,index)=>(
+                    <li key={index}>file.name</li>
                 ))}
             </ul>
+            <button onClick={handleRename}>Next</button>
         </div>
      );
 };
