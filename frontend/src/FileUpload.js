@@ -48,10 +48,10 @@ function FileUpload(){
             <button onClick={handleUpload}>Upload</button>
 
             <h3>Uploaded Files</h3>
-            //list all the files that are selected by the user
-             <ul>
+            {/* list all the files that are selected by the user */}
+             <ul style={{listStyleType:'none'}}>
                 {Array.from(files).map((file,index)=>(
-                    <li key={index}>file.name</li>
+                    <li key={index}>{file.name}</li>
                 ))}
             </ul>
             <button onClick={handleRename}>Next</button>
