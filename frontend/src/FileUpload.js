@@ -27,11 +27,17 @@ function FileUpload(){
         }
     };
 
-    const handleRename = async() = {
+    const handleRename = async() => {
         try{
+            //Assuming there is an endpoint for renaming the files
+            const response = await axios.post("http://localhost:5000/rename", {files:uploadedFiles});
+            console.log("File renamed successfully", response.data);
 
-        }catch(){
-            
+            //optionally update the list of renamed files
+            setUploadedFiles(response.data.files);
+
+        }catch(error){
+            console.error("Renaming process failed: ", error);
         }
     };
 
