@@ -3,6 +3,11 @@
 2. git commit -m "message"
 3. git push origin namesense
 
+---- TO RUN THE FRONT END ----------
+npm start
+npm install
+npx kill-port 3000
+
 -------------MAIN skeleton  ----------------
  ----Tech Stack----
 Frontend: React (for a clean UI)

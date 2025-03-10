@@ -11,52 +11,43 @@ function FileUpload(){
         setFiles(event.target.files); //get the list of selected files
     };
 
-    // function to "send the files to backend"
-    const handleUpload = async() => {
-        const formData = new FormData(); //create a new package to send files to backend
+    //function to send files to the backend and navigate to processing page
+    const handleNext = async()=>{
+        setProcessing(true); //start processing when the next is clicked
 
-        //looping and adding each file to the package
-        for(let i=0; files.length>i; i++){
+        const formData = new FormData(); //storing the uploaded files to send backend
+
+        //loop through the files and append to formData
+        for(let i =0;i7<files.length;i++){
             formData.append("files", files[i]);
         }
         try{
-            const response = await axios.post("http://localhost:5000/upload", formData, {headers:{"Content-type":"multipart/form-data"}});
-            setUploadedFiles(response.data.files);
-        }catch(error){
-            console.error("upload failed", error);
+            //send the files to backend for uploading and renaming
+            const response = await axios.post("http://localhost:5000/upload", formData, {headers:{"Content-Type":"multipart/form-data"}});
+         //After uploaded, pass the uploaded files to processing page
+         setProcessing(false);
+
+         //redirect to processing page with the uplaoded files
+         window.location.href = "/processing";
+        }
+        catch(error){
+            console.error("upload failed",error);
+            setProcessing(false);//stop processing when an error
         }
     };
-
-    const handleRename = async() => {
-        try{
-            //Assuming there is an endpoint for renaming the files
-            const response = await axios.post("http://localhost:5000/rename", {files:uploadedFiles});
-            console.log("File renamed successfully", response.data);
-
-            //optionally update the list of renamed files
-            setUploadedFiles(response.data.files);
-
-        }catch(error){
-            console.error("Renaming process failed: ", error);
-        }
-    };
-
     return(
         <div className="file-upload-container">
-            <h2>Upload Files</h2>
-            <input type="File" multiple onChange={handleFileChange}/>
-            <button onClick={handleUpload}>Upload</button>
+            <h2>Uploaded Files</h2>
+            <input type="File" multiple onchange={handleFileChange}/>
+            <button onClick={handleNext}>Next</button>
 
-            <h3>Uploaded Files</h3>
-            {/* list all the files that are selected by the user */}
-             <ul style={{listStyleType:'none'}}>
-                {Array.from(files).map((file,index)=>(
-                    <li key={index}>{file.name}</li>
-                ))}
+            <h3>Selected Files</h3>
+            <ul style={{listStyleType:"none"}}>
+                {Array.from(files).map((file, index)=>(
+                <li key={index}>{file.name}</li>))}
             </ul>
-            <button onClick={handleRename}>Next</button>
         </div>
-     );
+    )
 };
 
 export default FileUpload;
