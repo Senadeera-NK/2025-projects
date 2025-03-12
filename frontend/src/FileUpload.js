@@ -4,11 +4,11 @@ import axios from "axios"; //This helps us send data to the backend API
 
 function FileUpload(){
     const [files, setFiles] = useState([]); //files - stores the files user selects
-    const [uploadedFiles, setUploadedFiles] = useState([]); //uploadedFiles - stores the renamed files after backend processes them
+    const [processing, setProcessing] = useState([]); //uploadedFiles - stores the renamed files after backend processes them
 
     // function to detect when a user select a file, and store them in the "files"
     const handleFileChange = (event) => {
-        setFiles(event.target.files); //get the list of selected files
+        setFiles(Array.from(event.target.files)); //get the list of selected files
     };
 
     //function to send files to the backend and navigate to processing page
@@ -18,7 +18,7 @@ function FileUpload(){
         const formData = new FormData(); //storing the uploaded files to send backend
 
         //loop through the files and append to formData
-        for(let i =0;i7<files.length;i++){
+        for(let i =0;i<files.length;i++){
             formData.append("files", files[i]);
         }
         try{
@@ -38,14 +38,15 @@ function FileUpload(){
     return(
         <div className="file-upload-container">
             <h2>Uploaded Files</h2>
-            <input type="File" multiple onchange={handleFileChange}/>
-            <button onClick={handleNext}>Next</button>
-
+            <input type="File" multiple onChange={handleFileChange}/>
+            <br></br>
             <h3>Selected Files</h3>
             <ul style={{listStyleType:"none"}}>
                 {Array.from(files).map((file, index)=>(
                 <li key={index}>{file.name}</li>))}
             </ul>
+            <br></br>
+            <button onClick={handleNext}> Next </button>
         </div>
     )
 };
