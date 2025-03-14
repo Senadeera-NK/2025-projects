@@ -3,6 +3,12 @@
 2. git commit -m "message"
 3. git push origin namesense
 
+to update the contribution chart
+1. git checkout main
+2. git merge namesense
+3. git push origin main
+
+
 ---- TO RUN THE FRONT END ----------
 npm start
 npm install
